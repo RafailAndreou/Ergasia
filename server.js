@@ -1,9 +1,16 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 const port = 3000;
 
-app.use(express.static('public'));
+// Serve static files from the "public" directory
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Route to serve form.html
+app.get('/form', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'form.html'));
+});
 
 app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-}); 
+    console.log(`Server is running at http://localhost:${port}`);
+});

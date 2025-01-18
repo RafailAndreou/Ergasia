@@ -1,3 +1,5 @@
+
+
 let who = `<p>Ο Δομήνικος Θεοτοκόπουλος (Ηράκλειο Κρήτης, 1 Οκτωβρίου 1541 – Τολέδο, 7 Απριλίου 1614), 
 γνωστός επίσης με τo ισπανικό προσωνύμιο El Greco, που σημαίνει Ο Έλληνας, ήταν Κρητικός ζωγράφος, 
 γλύπτης και αρχιτέκτονας της ισπανικής Αναγέννησης. Έζησε το μεγαλύτερο μέρος της ζωής του μακριά από την Ελλάδα, 
@@ -118,7 +120,7 @@ document.getElementById('death').addEventListener('click', function() {
 
 document.getElementById("biobutton").addEventListener('click', function() {
     document.getElementById("pinakes").setAttribute("style", "display: none;");
-
+    document.getElementById("management").setAttribute("style", "display: none;");
     document.getElementById("biography").setAttribute("style", "display: block;");
 });
 
@@ -129,7 +131,14 @@ document.getElementById("biobutton").addEventListener('click', function() {
 document.getElementById("pinakesbutton").addEventListener('click', function() {
     document.getElementById("pinakes").setAttribute("style", "display: block;");
     document.getElementById("biography").setAttribute("style", "display: none   ;");
+    document.getElementById("management").setAttribute("style", "display: none;");
 
+});
+
+document.getElementById("managementbutton").addEventListener('click', function() {
+    document.getElementById("management").setAttribute("style", "display: block;");
+    document.getElementById("biography").setAttribute("style", "display: none;");
+    document.getElementById("pinakes").setAttribute("style", "display: none;");
 });
 
 
@@ -174,6 +183,14 @@ document.getElementById("Portreta").addEventListener('click', function() {
     document.getElementById("main").innerHTML = portreta;
 });
 
+document.getElementById("signup").addEventListener('click', function() {
+    fetch('/form')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("main").innerHTML = data;
+        })
+        .catch(error => console.error('Error fetching form.html:', error));
+});
 
 let others = `
     <div>
@@ -205,3 +222,4 @@ document.getElementById("other").addEventListener('click', function() {
     document.getElementById("main").innerHTML = others;
 
 });
+

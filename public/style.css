@@ -111,6 +111,10 @@ footer {grid-area: footer;}
     display:none;
 }
 
+#management {
+    display:none;
+}
+
 .flex{
     display:flex;
     padding:5px;
