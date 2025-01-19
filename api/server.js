@@ -4,21 +4,21 @@ const app = express();
 const port = 3000;
 
 // Serve static files from the "public" directory
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 // Route to serve form.html
 app.get('/form', (req, res) => {
-    res.sendFile(path.join(__dirname, 'form.html'));
+    res.sendFile(path.join(__dirname, '../public/form.html'));
 }); 
 
 // Route to serve ekthesis.json
 app.get('/ekthesis', (req, res) => {
-    res.sendFile(path.join(__dirname, 'ekthesis.json'));
+    res.sendFile(path.join(__dirname, '../ekthesis.json'));
 });
 
 // Route to serve links.json
 app.get('/links', (req, res) => {
-    res.sendFile(path.join(__dirname, 'links.json'));
+    res.sendFile(path.join(__dirname, '../links.json'));
 });
 
 app.listen(port, () => {
