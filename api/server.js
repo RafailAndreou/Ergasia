@@ -13,12 +13,12 @@ app.get('/form', (req, res) => {
 
 // Route to serve ekthesis.json
 app.get('/ekthesis', (req, res) => {
-    res.sendFile(path.join(__dirname, '../ekthesis.json'));
+    res.sendFile(path.join(__dirname, '../public/ekthesis.json'));
 });
 
 // Route to serve links.json
 app.get('/links', (req, res) => {
-    res.sendFile(path.join(__dirname, '../links.json'));
+    res.sendFile(path.join(__dirname, '../public/links.json'));
 });
 
 app.listen(port, () => {
