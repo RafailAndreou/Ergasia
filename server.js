@@ -8,7 +8,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Route to serve form.html
 app.get('/form', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'form.html'));
+    res.sendFile(path.join(__dirname, 'form.html'));
+});
+
+// Route to serve ekthesis.json
+app.get('/ekthesis', (req, res) => {
+    res.sendFile(path.join(__dirname, 'ekthesis.json'));
 });
 
 app.listen(port, () => {

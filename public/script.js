@@ -122,7 +122,10 @@ document.getElementById("biobutton").addEventListener('click', function() {
     document.getElementById("pinakes").setAttribute("style", "display: none;");
     document.getElementById("management").setAttribute("style", "display: none;");
     document.getElementById("biography").setAttribute("style", "display: block;");
+    document.getElementById("ekthesis").setAttribute("style", "display: none;");
+
 });
+
 
 
 
@@ -132,15 +135,24 @@ document.getElementById("pinakesbutton").addEventListener('click', function() {
     document.getElementById("pinakes").setAttribute("style", "display: block;");
     document.getElementById("biography").setAttribute("style", "display: none   ;");
     document.getElementById("management").setAttribute("style", "display: none;");
-
+    document.getElementById("ekthesis").setAttribute("style", "display: none;");
+    
 });
 
 document.getElementById("managementbutton").addEventListener('click', function() {
     document.getElementById("management").setAttribute("style", "display: block;");
     document.getElementById("biography").setAttribute("style", "display: none;");
     document.getElementById("pinakes").setAttribute("style", "display: none;");
+    document.getElementById("ekthesis").setAttribute("style", "display: none;");
+
 });
 
+document.getElementById("ekthesisbutton").addEventListener('click', function() {
+    document.getElementById("pinakes").setAttribute("style", "display: none;");
+    document.getElementById("management").setAttribute("style", "display: none;");
+    document.getElementById("biography").setAttribute("style", "display: none;");
+    document.getElementById("ekthesis").setAttribute("style", "display: block;");
+});
 
 let agiografies = `   
             <div>
@@ -183,11 +195,27 @@ document.getElementById("Portreta").addEventListener('click', function() {
     document.getElementById("main").innerHTML = portreta;
 });
 
-document.getElementById("signup").addEventListener('click', function() {
+document.getElementById("signin").addEventListener('click', function() {
     fetch('/form')
         .then(response => response.text())
         .then(data => {
             document.getElementById("main").innerHTML = data;
+
+            // Add event listener to the form submission
+            const form = document.querySelector('form');
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                const email = form.elements['email'].value;
+                const password = form.elements['password'].value;
+
+                if (email === 'rafailandreou123@gmail.com' && password === 'uth') {
+                    alert('Logged in successfully!');
+                    // You can redirect the user or update the UI as needed
+                } else {
+                    alert('Invalid email or password.');
+                }
+            });
         })
         .catch(error => console.error('Error fetching form.html:', error));
 });
@@ -223,3 +251,21 @@ document.getElementById("other").addEventListener('click', function() {
 
 });
 
+document.getElementById("Hraklio").addEventListener('click', function() {
+    fetch('/ekthesis')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("main").innerHTML = `<p>${data["Ηράκλειο"]}</p>`;
+        })
+        .catch(error => console.error('Error fetching ekthesis.json:', error));
+});
+
+document.getElementById("Athina").addEventListener('click', function() {
+    fetch('/ekthesis')
+        .then(response => response.json())
+        .then(data => {
+            const athinaExhibitions = data["Αθήνα"].map(exhibition => `<li>${exhibition}</li>`).join('');
+            document.getElementById("main").innerHTML = `<ul>${athinaExhibitions}</ul>`;
+        })
+        .catch(error => console.error('Error fetching ekthesis.json:', error));
+});
