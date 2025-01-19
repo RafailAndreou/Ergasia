@@ -21,6 +21,7 @@ app.get('/links', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/links.json'));
 });
 
+module.exports = app;
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
 });
