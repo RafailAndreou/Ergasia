@@ -136,7 +136,7 @@ document.getElementById("pinakesbutton").addEventListener('click', function() {
     document.getElementById("biography").setAttribute("style", "display: none   ;");
     document.getElementById("management").setAttribute("style", "display: none;");
     document.getElementById("ekthesis").setAttribute("style", "display: none;");
-    
+    document.getElementById("links").setAttribute("style", "display: none;");    
 });
 
 document.getElementById("managementbutton").addEventListener('click', function() {
@@ -144,6 +144,8 @@ document.getElementById("managementbutton").addEventListener('click', function()
     document.getElementById("biography").setAttribute("style", "display: none;");
     document.getElementById("pinakes").setAttribute("style", "display: none;");
     document.getElementById("ekthesis").setAttribute("style", "display: none;");
+    document.getElementById("links").setAttribute("style", "display: none;");
+
 
 });
 
@@ -151,7 +153,17 @@ document.getElementById("ekthesisbutton").addEventListener('click', function() {
     document.getElementById("pinakes").setAttribute("style", "display: none;");
     document.getElementById("management").setAttribute("style", "display: none;");
     document.getElementById("biography").setAttribute("style", "display: none;");
+    document.getElementById("links").setAttribute("style", "display: none;");
     document.getElementById("ekthesis").setAttribute("style", "display: block;");
+
+});
+
+document.getElementById("linksbutton").addEventListener('click', function() {
+    document.getElementById("pinakes").setAttribute("style", "display: none;");
+    document.getElementById("management").setAttribute("style", "display: none;");
+    document.getElementById("biography").setAttribute("style", "display: none;");
+    document.getElementById("ekthesis").setAttribute("style", "display: none;");
+    document.getElementById("links").setAttribute("style", "display: block;");
 });
 
 let agiografies = `   
@@ -268,4 +280,33 @@ document.getElementById("Athina").addEventListener('click', function() {
             document.getElementById("main").innerHTML = `<ul>${athinaExhibitions}</ul>`;
         })
         .catch(error => console.error('Error fetching ekthesis.json:', error));
+});
+
+document.getElementById("internet").addEventListener('click', function() {
+    fetch('/links')
+        .then(response => response.json())
+        .then(data => {
+            const internetLinks = data["diadiktiakoi"].map(link => `<li><a href="${link}" target="_blank">${link}</a></li>`).join('');
+            document.getElementById("main").innerHTML = `<ul>${internetLinks}</ul>`;
+        })
+        .catch(error => console.error('Error fetching links.json:', error));
+});
+
+document.getElementById("filmography").addEventListener('click', function() {
+    fetch('/links')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("main").innerHTML = `<p><a href="${data["filmografia"]}" target="_blank">${data["filmografia"]}</a></p>`;
+        })
+        .catch(error => console.error('Error fetching links.json:', error));
+});
+
+document.getElementById("bibliography").addEventListener('click', function() {
+    fetch('/links')
+        .then(response => response.json())
+        .then(data => {
+            const bibliographyLinks = data["vivliografia"].map(link => `<li><a href="${link}" target="_blank">${link}</a></li>`).join('');
+            document.getElementById("main").innerHTML = `<ul>${bibliographyLinks}</ul>`;
+        })
+        .catch(error => console.error('Error fetching links.json:', error));
 });
